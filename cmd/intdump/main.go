@@ -1,24 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
+	"github.com/wolfgangwazzlestrauss/intdump/pkg/intdump"
 )
-
-// Print integer representation of bytes.
-func printFile(bytes []byte, stride int) {
-	length := len(bytes)
-
-	for i := 0; i < length; i += stride {
-		str := ""
-		for j := 0; j < stride && i+j < length; j++ {
-			str += fmt.Sprintf("% 4d", bytes[i+j])
-		}
-
-		fmt.Printf("%07d %s\n", i, str)
-	}
-}
 
 // Parse command line arguments.
 func readArgs() string {
@@ -43,5 +29,5 @@ func readFile(file_path string) []byte {
 func main() {
 	file_path := readArgs()
 	bytes := readFile(file_path)
-	printFile(bytes, 4)
+	intdump.PrintBytes(bytes, 4)
 }

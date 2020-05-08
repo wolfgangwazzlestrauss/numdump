@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"github.com/wolfgangwazzlestrauss/intdump/pkg/intdump"
@@ -29,5 +30,6 @@ func readFile(file_path string) []byte {
 func main() {
 	file_path := readArgs()
 	bytes := readFile(file_path)
-	intdump.PrintBytes(bytes, 4)
+	text := intdump.DumpBytes(bytes, 4)
+	fmt.Printf(text)
 }

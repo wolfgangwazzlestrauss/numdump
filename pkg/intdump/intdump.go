@@ -3,7 +3,7 @@ package intdump
 import "fmt"
 
 // Print integer representation of bytes.
-func DumpBytes(bytes []byte, stride int) string {
+func fmtInts(bytes []byte, stride int) string {
 	length := len(bytes)
 
 	output := ""

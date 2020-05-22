@@ -1,3 +1,5 @@
+// Package intdump provides functions for reading numbers from bytes and
+// formatting them to resemble hexdump output.
 package intdump
 
 import (
@@ -5,7 +7,7 @@ import (
 	"encoding/binary"
 )
 
-// Print integer representation of bytes.
+// Format and align strings to resemble hexdump output.
 func fmtStrings(strs []string, width uint8, stride int) string {
 	length := len(strs)
 	format := fmt.Sprintf("%% %ds", width)
@@ -23,6 +25,7 @@ func fmtStrings(strs []string, width uint8, stride int) string {
 	return text
 }
 
+// Read and format 8-bit integers.
 func DumpBytes(bytes []byte, stride int) string {
 	strs := make([]string, len(bytes))
 	for idx, byte_ := range bytes {
@@ -32,6 +35,7 @@ func DumpBytes(bytes []byte, stride int) string {
 	return fmtStrings(strs, 4, stride)
 }
 
+// Read and format unsigned 16-bit integers.
 func DumpShorts(bytes []byte, stride int, litteEndian bool) string {
 	n := len(bytes)
 	var m int

@@ -1,6 +1,6 @@
 // Package intdump provides functions for reading numbers from bytes and
 // formatting them to resemble hexdump output.
-package intdump
+package numdump
 
 import (
 	"fmt"

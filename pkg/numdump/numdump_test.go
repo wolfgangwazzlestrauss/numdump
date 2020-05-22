@@ -1,4 +1,4 @@
-package intdump
+package numdump
 
 import (
 	"testing"

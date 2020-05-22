@@ -30,6 +30,6 @@ func readFile(file_path string) []byte {
 func main() {
 	file_path := readArgs()
 	bytes := readFile(file_path)
-	text := intdump.DumpBytes(bytes, 4)
+	text := intdump.DumpShorts(bytes, 4, true)
 	fmt.Printf(text)
 }

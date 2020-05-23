@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/wolfgangwazzlestrauss/numdump/pkg/numdump"
 	"io/ioutil"
 	"os"
-	"github.com/wolfgangwazzlestrauss/numdump/pkg/numdump"
 )
 
 // Parse command line arguments.
@@ -30,6 +30,6 @@ func readFile(file_path string) []byte {
 func main() {
 	file_path := readArgs()
 	bytes := readFile(file_path)
-	text := numdump.DumpShorts(bytes, 4, true)
+	text := numdump.DumpUInt16(bytes, 4, numdump.LittleEndian)
 	fmt.Printf(text)
 }

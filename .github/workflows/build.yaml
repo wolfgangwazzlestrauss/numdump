@@ -1,0 +1,39 @@
+name: build
+on:
+  push:
+    branches:
+      - develop
+      - feature/*
+      - master
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code repository checkout
+        uses: actions/checkout@v1
+      - name: Check format of configuration files
+        run: |
+          npm test
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.14
+      - name: Build and static test Go code
+        run: |
+          gofmt -d -l pkg/numdump/*.go
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Code repository checkout
+        uses: actions/checkout@v1
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.14
+      - name: Build and test
+        run: |
+          go test github.com/wolfgangwazzlestrauss/numdump/...

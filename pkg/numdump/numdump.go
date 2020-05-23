@@ -3,8 +3,15 @@
 package numdump
 
 import (
-	"fmt"
 	"encoding/binary"
+	"fmt"
+)
+
+type Endian int
+
+const (
+	LittleEndian Endian = iota
+	BigEndian
 )
 
 // Format and align strings to resemble hexdump output.
@@ -26,7 +33,7 @@ func fmtStrings(strs []string, width uint8, stride int) string {
 }
 
 // Read and format 8-bit integers.
-func DumpBytes(bytes []byte, stride int) string {
+func DumpUInt8(bytes []byte, stride int) string {
 	strs := make([]string, len(bytes))
 	for idx, byte_ := range bytes {
 		strs[idx] = fmt.Sprintf("%d", byte_)
@@ -36,26 +43,26 @@ func DumpBytes(bytes []byte, stride int) string {
 }
 
 // Read and format unsigned 16-bit integers.
-func DumpShorts(bytes []byte, stride int, litteEndian bool) string {
+func DumpUInt16(bytes []byte, stride int, endian Endian) string {
 	n := len(bytes)
 	var m int
-	if n % 2 == 0 {
+	if n%2 == 0 {
 		m = n
 	} else {
 		m = n - 1
 	}
 
-	strs := make([]string, n / 2)
+	strs := make([]string, n/2)
 
 	for idx := 0; idx < m; idx += 2 {
 		var short uint16
-		if litteEndian {
-			short = binary.LittleEndian.Uint16(bytes[idx:idx+2])
+		if endian == LittleEndian {
+			short = binary.LittleEndian.Uint16(bytes[idx : idx+2])
 		} else {
-			short = binary.BigEndian.Uint16(bytes[idx:idx+2])
+			short = binary.BigEndian.Uint16(bytes[idx : idx+2])
 		}
-		strs[idx / 2] = fmt.Sprintf("%d", short)
+		strs[idx/2] = fmt.Sprintf("%d", short)
 	}
 
-	return fmtStrings(strs, 8, stride)
+	return fmtStrings(strs, 6, stride)
 }

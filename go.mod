@@ -1,4 +1,4 @@
-module github.com/wolfgangwazzlestrauss/intdump
+module github.com/wolfgangwazzlestrauss/numdump
 
 go 1.14
 

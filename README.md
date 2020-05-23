@@ -1,4 +1,4 @@
-# IntDump
+# NumDump
 
-IntDump is a small binary progam that mimics `hexdump`. However, it prints
-binary as unsigned integers instead of hexidecimal format. 
+numdump is a small binary progam that produces hex dumps for numeric
+interpretations of bytes.

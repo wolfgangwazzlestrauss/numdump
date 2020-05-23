@@ -11,9 +11,6 @@ jobs:
     steps:
       - name: Code repository checkout
         uses: actions/checkout@v1
-      - name: Check format of configuration files
-        run: |
-          npm test
       - name: Install Go
         uses: actions/setup-go@v2
         with:

@@ -1,0 +1,4 @@
+baseURL = "http://wolfgangwazzlestrauss.github.io/numdump/"
+languageCode = "en-us"
+title = "numdump"
+theme = "hugo-theme-learn"
